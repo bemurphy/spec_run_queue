@@ -39,3 +39,4 @@ TODO
 
 * Genericify and configure the runner
 * Include code or a plugin for the vim script I'm using to inject instructions into the queue
+* Investigate a custom rspec runner in place of the current shell execution method
