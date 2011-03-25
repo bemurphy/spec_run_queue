@@ -1,3 +1,5 @@
+require 'redis'
+
 module SpecRunQueue
   module Queue
     class Redis < Base

@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'redis'
 require 'yaml'
 require 'ruby-growl'
 
