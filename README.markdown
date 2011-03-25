@@ -3,7 +3,9 @@ WHAT
 
 spec_run_queue lets you build a lightweight queue watcher to watch for commands to run specs for your project.
 
-On projects with a slow test suite, I don't like waiting for an autotest-like setup to complete a full spec run of a file.  My development flow on such files tends to be 1) write a new spec example 2) run a focused example 3) repeat a few times 4) run the full spec
+On projects with a slow test suite, I don't like waiting for an autotest-like setup to complete a full spec run of a file.  Also, I don't like watching my editor lock up waiting for a spec run to finish.
+
+My development flow on such files tends to be 1) write a new spec example 2) run a focused example 3) repeat a few times 4) run the full spec
 
 The runner works by doing a blocking queue read, until it receives a YAML dump of a hash like
 
