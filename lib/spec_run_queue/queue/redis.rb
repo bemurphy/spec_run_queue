@@ -1,3 +1,4 @@
+require 'digest/md5'
 require 'redis'
 
 module SpecRunQueue
@@ -6,8 +7,12 @@ module SpecRunQueue
       attr_reader :redis
 
       def self.queue_key
-        "rspec" 
+        @queue_key ||= ["spec_run_queue", Digest::MD5.hexdigest(Dir.pwd)].join(':') 
       end
+
+      # def self.run_rescue_exceptions
+        # [Errno::EAGAIN]
+      # end
 
       private
 

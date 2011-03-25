@@ -1,3 +1,5 @@
+require 'ruby-growl'
+
 module SpecRunQueue
   module Notifier
     class Growl < Base
@@ -22,7 +24,7 @@ module SpecRunQueue
       end
 
       def growl
-        @growl ||= Growl.new "127.0.0.1", "rspec-growl", ["rspec-growl Notification"], nil, config[:password]
+        @growl ||= ::Growl.new "127.0.0.1", "rspec-growl", ["rspec-growl Notification"], nil, config[:password]
       end
 
       def short_message

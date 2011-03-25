@@ -39,7 +39,7 @@ In order to trigger a queue run, you need your editor to insert a YAML dump of t
 TODO
 ====
 
+* Check for Gemfile to bundle exec the spec bin
 * Genericify and configure the runner
-* Generate a per project queue key, based on the project dir or something, to avoid collisions
 * Include code or a plugin for the vim script I'm using to inject instructions into the queue
 * Investigate a custom rspec runner in place of the current shell execution method

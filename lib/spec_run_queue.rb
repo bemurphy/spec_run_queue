@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'yaml'
-require 'ruby-growl'
 
 module SpecRunQueue
 end

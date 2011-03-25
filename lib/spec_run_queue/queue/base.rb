@@ -16,7 +16,23 @@ module SpecRunQueue
         end
       end
 
+      def self.run_rescue_exceptions
+        []
+      end
+
       private
+
+      def with_reconnect
+        begin
+          yield
+        # rescue *self.class.run_rescue_exceptions => e
+        rescue => e
+          puts "exception #{e.class} occurred, reconnecting..."
+          sleep(1)
+          connect
+          retry
+        end
+      end
 
       def connect
         raise "Abstract method"
