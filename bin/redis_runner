@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+#TODO make this more generic and configurable
+
+require 'spec_run_queue'
+require 'spec_run_queue/queue/redis'
+require 'spec_run_queue/notifier/growl'
+require 'spec_run_queue/notifier/stdout'
+
+rspec_major_version = ARGV.shift
+unless rspec_major_version
+  $stderr.puts "please specify 1 or 2 for rspec version"
+  exit -1
+end
+
+runner = SpecRunQueue::SystemRunner.new(rspec_major_version)
+runner.add_notifier SpecRunQueue::Notifier::Growl.new(:password => "gr0wl")
+runner.add_notifier SpecRunQueue::Notifier::Stdout.new()
+
+queue = SpecRunQueue::Queue::Redis.new(runner)
+queue.run
+
