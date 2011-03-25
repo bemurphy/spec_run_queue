@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Brendon Murphy"]
   s.email       = ["xternal1+github@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/bemurphy/spec_run_queue"
   s.summary     = %q{Use a queue to run specs outside your editor}
   s.description = %q{Use a queue to run specs outside your editor}
 
