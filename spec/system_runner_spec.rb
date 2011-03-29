@@ -65,12 +65,12 @@ describe SpecRunQueue::SystemRunner do
     end
 
     it "should call to run the spec" do
-      runner.should_receive(:run_cmd).with("spec -f progress --drb foo_spec.rb")
+      runner.should_receive(:run_cmd).with("spec -f nested --drb foo_spec.rb")
       runner.run_spec(:target => "foo_spec.rb")
     end
 
     it "should send the output from the run to all the notifiers" do
-      runner.should_receive(:run_cmd).with("spec -f progress --drb foo_spec.rb").and_return("spec output")
+      runner.should_receive(:run_cmd).with("spec -f nested --drb foo_spec.rb").and_return("spec output")
       foo_notifier.should_receive(:notify).with("spec output", {})
       bar_notifier.should_receive(:notify).with("spec output", {})
       runner.run_spec(:target => "foo_spec.rb")
@@ -78,7 +78,7 @@ describe SpecRunQueue::SystemRunner do
 
     context "with a line number" do
      it "should call to run the spec using the -l flag" do
-      runner.should_receive(:run_cmd).with("spec -f progress --drb -l 42 foo_spec.rb")
+      runner.should_receive(:run_cmd).with("spec -f nested --drb -l 42 foo_spec.rb")
       runner.run_spec(:target => "foo_spec.rb", :line => 42)
      end
     end

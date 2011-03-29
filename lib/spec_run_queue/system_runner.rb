@@ -29,9 +29,10 @@ module SpecRunQueue
       end
 
       begin
-        cmd = "#{rspec_bin} -f progress --drb" 
+        cmd = "#{rspec_bin} -f nested --drb" 
         cmd << " -l #{instruction[:line]}" if instruction[:line]
         cmd << " #{instruction[:target]}"
+        puts "Running command #{cmd}"
         output = run_cmd(cmd)
 
         output_to_notifiers(output)
@@ -46,7 +47,14 @@ module SpecRunQueue
     private
 
     def run_cmd(cmd)
-      `#{cmd}`
+      specs = IO.popen cmd
+      output = ""
+      while line = specs.gets
+        output += line
+        puts line
+      end
+
+      output
     end
 
     def output_to_notifiers(output, options = {})

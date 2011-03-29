@@ -15,7 +15,7 @@ end
 
 runner = SpecRunQueue::SystemRunner.new(rspec_major_version)
 runner.add_notifier SpecRunQueue::Notifier::Growl.new(:password => "gr0wl")
-runner.add_notifier SpecRunQueue::Notifier::Stdout.new()
+# runner.add_notifier SpecRunQueue::Notifier::Stdout.new()
 
 queue = SpecRunQueue::Queue::Redis.new(runner)
 queue.run
