@@ -10,9 +10,11 @@ module SpecRunQueue
       end
 
       def run
-        while (raw_instruction = queue_fetch)
-          instruction = YAML.load(raw_instruction[1])
-          runner.run_spec(instruction)
+        with_reconnect do
+          while (raw_instruction = queue_fetch)
+            instruction = YAML.load(raw_instruction[1])
+            runner.run_spec(instruction)
+          end
         end
       end
 
@@ -27,7 +29,7 @@ module SpecRunQueue
           yield
         # rescue *self.class.run_rescue_exceptions => e
         rescue => e
-          puts "exception #{e.class} occurred, reconnecting..."
+          $stderr.puts "exception #{e.class} occurred, reconnecting..."
           sleep(1)
           connect
           retry
