@@ -54,6 +54,8 @@ module SpecRunQueue
         puts line
       end
 
+      specs.close
+
       output
     end
 
