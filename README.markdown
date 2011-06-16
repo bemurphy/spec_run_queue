@@ -20,7 +20,7 @@ and then runs the command, via backticks, in the shell.  Summary results from th
 NOTIFIERS
 =========
 
-Notifiers must provide at least one instane method, <tt>notify</tt>, which processes the output from the spec run.  Currently, there are two runners, Stdout, and Growl.  Stdout prints the results from the run to the terminal window, while growl sends a brief pass/fail summary to growl.
+Notifiers must provide at least one instance method, <tt>notify</tt>, which processes the output from the spec run.  Currently, there are two runners, Stdout, and Growl.  Stdout prints the results from the run to the terminal window, while growl sends a brief pass/fail summary to growl.
 
 
 USAGE
