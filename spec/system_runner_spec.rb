@@ -73,7 +73,7 @@ describe SpecRunQueue::SystemRunner do
 
     context "with a line number" do
      it "should call to run the spec using the -l flag" do
-      runner.should_receive(:run_cmd).with("spec -f nested --drb -l 42 foo_spec.rb")
+      runner.should_receive(:run_cmd).with("spec -f nested --drb -l42 foo_spec.rb")
       runner.run_spec(:target => "foo_spec.rb", :line => 42)
      end
     end

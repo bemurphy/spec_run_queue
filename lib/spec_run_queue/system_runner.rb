@@ -23,7 +23,7 @@ module SpecRunQueue
 
       begin
         cmd = "#{rspec_bin} -f nested --drb"
-        cmd << " -l #{instruction[:line]}" if instruction[:line]
+        cmd << " -l#{instruction[:line]}" if instruction[:line]
         cmd << " #{instruction[:target]}"
         puts "Running command #{cmd}"
         output = run_cmd(cmd)
