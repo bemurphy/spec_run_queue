@@ -23,23 +23,34 @@ NOTIFIERS
 Notifiers must provide at least one instance method, <tt>notify</tt>, which processes the output from the spec run.  Currently, there are two runners, Stdout, and Growl.  Stdout prints the results from the run to the terminal window, while growl sends a brief pass/fail summary to growl.
 
 
+CONFIGURATION
+=============
+
+You can configure per project behavior by creating a SpecRunQueueFile in the root of
+your project.  An example of such a file might look like:
+
+```ruby
+SpecRunQueue.configure do |c|
+  c.rspec_bin = "bundle exec rspec"
+  c.add_notifier :growl, :password => "fizzbuzz"
+end
+```
+
+If you do not provide a configuration, the runner will assume a binary of `rspec` and
+use the stdout notifier.
+
 USAGE
 =====
 
 In your project root, run
 
-    redis_runner [1|2]
-
-where 1 or 2 indicates the major version of rspec you are using for the project.
-
+    redis_runner
 
 In order to trigger a queue run, you need your editor to insert a YAML dump of the instructions described above to the queue.
-
 
 TODO
 ====
 
-* Check for Gemfile to bundle exec the spec bin
-* Genericify and configure the runner
 * Include code or a plugin for the vim script I'm using to inject instructions into the queue
 * Investigate a custom rspec runner in place of the current shell execution method
+* Swap YAML for JSON

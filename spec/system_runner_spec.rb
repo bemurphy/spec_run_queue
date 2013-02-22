@@ -3,42 +3,37 @@ require 'spec_helper'
 describe SpecRunQueue::SystemRunner do
   let(:foo_notifier) { @foo_notifier ||= mock("FooNotifier", :notify => true) }
   let(:bar_notifier) { @bar_notifier ||= mock("BarNotifier", :notify => true) }
-  let(:runner) { @runner ||= 
+  let(:runner) { @runner ||=
     begin
-      runner = SpecRunQueue::SystemRunner.new(1)
+      runner = SpecRunQueue::SystemRunner.new(:rspec_bin => "spec")
       runner.add_notifier(foo_notifier)
       runner.add_notifier(bar_notifier)
-      runner 
+      runner
     end
   }
 
   describe "initializing" do
-    it "should set the version" do
-      runner = SpecRunQueue::SystemRunner.new(1, { :password => "foo" })
-      runner.version.should == 1
-    end
-
     it "should set the options" do
-      runner = SpecRunQueue::SystemRunner.new(1, { :password => "foo" })
+      runner = SpecRunQueue::SystemRunner.new({ :password => "foo" })
       runner.options.should == { :password => "foo" }
     end
   end
-  
+
   describe "getting the rspec binary" do
-    it "for version 1 is spec by default" do
-      runner = SpecRunQueue::SystemRunner.new(1)
-      runner.rspec_bin.should == "spec"
+    it "is 'rspec' by default" do
+      runner = SpecRunQueue::SystemRunner.new
+      runner.rspec_bin.should == "rspec"
     end
 
-    it "for varsion 2 is rspec by default" do
-      runner = SpecRunQueue::SystemRunner.new(2)
-      runner.rspec_bin.should == "rspec"
+    it "will use the rspec_bin option if present" do
+      runner = SpecRunQueue::SystemRunner.new(:rspec_bin => "bundle exec rspec")
+      runner.rspec_bin.should == "bundle exec rspec"
     end
   end
 
   describe "adding a notifier" do
     it "should append the notifier onto the notifiers list" do
-      runner = SpecRunQueue::SystemRunner.new(1)
+      runner = SpecRunQueue::SystemRunner.new
       foo_notifier = mock("FooNotifier")
       runner.add_notifier(foo_notifier)
       bar_notifier = mock("BarNotifier")
