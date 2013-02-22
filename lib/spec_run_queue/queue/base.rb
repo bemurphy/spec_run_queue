@@ -12,6 +12,7 @@ module SpecRunQueue
       def run
         with_reconnect do
           while (raw_instruction = queue_fetch)
+            raise "Dangerous yaml!" if raw_instruction[1] =~ /!ruby/
             instruction = YAML.load(raw_instruction[1])
             runner.run_spec(instruction)
           end
