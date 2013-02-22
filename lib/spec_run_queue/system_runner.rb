@@ -1,20 +1,13 @@
 module SpecRunQueue
   class SystemRunner
-    attr_reader :version, :options, :notifiers
+    attr_reader :options, :notifiers
 
-    def initialize(version, options = {})
-      @version = version.to_i
+    def initialize(options = {})
       @options = options
     end
 
     def rspec_bin
-      if version == 1
-        options[:spec_bin] || "spec"
-      elsif version == 2
-        options[:rspec_bin] || "rspec"
-      else
-        raise "Couldn't determine rspec bin'"
-      end
+      options.fetch(:rspec_bin, "rspec")
     end
 
     def add_notifier(notifier)
