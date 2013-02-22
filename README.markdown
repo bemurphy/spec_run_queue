@@ -39,6 +39,9 @@ end
 If you do not provide a configuration, the runner will assume a binary of `rspec` and
 use the stdout notifier.
 
+Note, if you wish to use `ruby-growl` for notifications, you currently must specify a
+the ~> 3.0 series of the gem yourself.
+
 USAGE
 =====
 
