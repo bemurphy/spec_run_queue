@@ -61,7 +61,7 @@ module SpecRunQueue
     def sane_instruction?(instruction)
       # Line must be numeric or nil, and the target must be a path to a spec file
       (instruction[:line].nil? || instruction[:line].to_s =~ /\A\d+\z/) &&
-        (instruction[:target] =~ /^[a-z0-9_\-\/]+_spec\.rb$/)
+        (instruction[:target] =~ /\A[a-z0-9_\-\/]+_spec\.rb\z/)
     end
   end
 end
