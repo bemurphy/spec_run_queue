@@ -19,7 +19,8 @@ Gem::Specification.new do |s|
   s.executables   = ["redis_runner"]
   s.require_paths = ["lib"]
 
+  s.add_dependency "redis"
+
   s.add_development_dependency "rspec"
-  s.add_development_dependency "redis"
   s.add_development_dependency "ruby-growl", '~> 3.0'
 end
