@@ -22,7 +22,7 @@ module SpecRunQueue
       end
 
       begin
-        cmd = "#{rspec_bin} -f nested --drb" 
+        cmd = "#{rspec_bin} -f nested --drb"
         cmd << " -l #{instruction[:line]}" if instruction[:line]
         cmd << " #{instruction[:target]}"
         puts "Running command #{cmd}"
@@ -60,7 +60,7 @@ module SpecRunQueue
 
     def sane_instruction?(instruction)
       # Line must be numeric or nil, and the target must be a path to a spec file
-      (instruction[:line].nil? || instruction[:line].to_s =~ /^\d+$/) && 
+      (instruction[:line].nil? || instruction[:line].to_s =~ /\A\d+\z/) &&
         (instruction[:target] =~ /^[a-z0-9_\-\/]+_spec\.rb$/)
     end
   end
