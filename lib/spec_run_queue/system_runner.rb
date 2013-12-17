@@ -4,6 +4,7 @@ module SpecRunQueue
 
     def initialize(options = {})
       @options = options
+      @notifiers = []
     end
 
     def rspec_bin
@@ -11,7 +12,6 @@ module SpecRunQueue
     end
 
     def add_notifier(notifier)
-      @notifiers ||= []
       @notifiers << notifier
     end
 
