@@ -8,7 +8,11 @@ module SpecRunQueue
     end
 
     def rspec_bin
-      options.fetch(:rspec_bin, "rspec")
+      options.fetch(:rspec_bin, 'rspec')
+    end
+
+    def rspec_format
+      options.fetch(:rspec_format, 'nested')
     end
 
     def add_notifier(notifier)
@@ -22,9 +26,9 @@ module SpecRunQueue
       end
 
       begin
-        cmd = "#{rspec_bin} -f nested --drb"
-        cmd << " -l#{instruction[:line]}" if instruction[:line]
+        cmd = "#{rspec_bin} -f #{rspec_format} --drb"
         cmd << " #{instruction[:target]}"
+        cmd << ":#{instruction[:line]}" if instruction[:line]
         puts "Running command #{cmd}"
         output = run_cmd(cmd)
 

@@ -3,7 +3,7 @@ require 'yaml'
 
 module SpecRunQueue
   class Configuration
-    attr_accessor :rspec_bin
+    attr_accessor :rspec_bin, :rspec_format
 
     def add_notifier(runner_symbol, options = {})
       klass = SpecRunQueue::Notifier.send(:const_get, runner_symbol.to_s.capitalize)
@@ -12,7 +12,8 @@ module SpecRunQueue
 
     def to_h
       h = {}
-      h[:rspec_bin] = rspec_bin if rspec_bin
+      h[:rspec_bin]    = rspec_bin if rspec_bin
+      h[:rspec_format] = rspec_format if rspec_format
       h
     end
   end
