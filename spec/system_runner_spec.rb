@@ -31,6 +31,18 @@ describe SpecRunQueue::SystemRunner do
     end
   end
 
+  describe "getting the rspec format" do
+    it "is 'nested' by default" do
+      runner = SpecRunQueue::SystemRunner.new
+      runner.rspec_format.should == "nested"
+    end
+
+    it "will use the rspec_format option if present" do
+      runner = SpecRunQueue::SystemRunner.new(:rspec_format => "spec_f")
+      runner.rspec_format.should == "spec_f"
+    end
+  end
+
   describe "adding a notifier" do
     it "should append the notifier onto the notifiers list" do
       runner = SpecRunQueue::SystemRunner.new
@@ -73,7 +85,7 @@ describe SpecRunQueue::SystemRunner do
 
     context "with a line number" do
      it "should call to run the spec using the -l flag" do
-      runner.should_receive(:run_cmd).with("spec -f nested --drb -l42 foo_spec.rb")
+      runner.should_receive(:run_cmd).with("spec -f nested --drb foo_spec.rb:42")
       runner.run_spec(:target => "foo_spec.rb", :line => 42)
      end
     end
